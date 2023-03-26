@@ -68,3 +68,60 @@ E:.
 缺陷：
 	验证码需要处理，少量采集时可以忽略
 	台湾站的ip代理比较复杂
+	
+	
+	
+Title: Deployment Steps for Web Scraping Tool
+
+Introduction:
+The following is a guide for deploying a web scraping tool, with a focus on Python 3.7-3.8. The tool requires several dependencies, including fake_useragent, httpx, redis, requests, threadpool, and tqdm.
+
+Step 1: Activate the Virtual Environment
+In the root directory, activate the virtual environment by running ".\venv\Scripts\activate" in the terminal.
+
+Step 2: Install Required Dependencies
+Install the required dependencies by running "pip install -r requirements" in the terminal.
+
+Step 3: Run the Tool
+To run the tool, execute the following steps:
+
+Configure the config file, specifying host and checkpoint parameters.
+Start the change_ip_windows_timely.py script to enable IP support, or modify the config file if not using IP support.
+Run "python main_get_products_by_cat.py --host sg" in the terminal to initiate the tool. Use the optional "--check_point" parameter to resume progress from a previous run.
+Note: Steps A and B are not required unless updating the categories.
+
+Step A: Get the Categories
+To update the categories, execute the following steps:
+
+Run "1.get_third(facet)_category.py" to collect all original category information.
+Run "2.create_tree_last.py" to parse the information based on custom JSON logic.
+Manually modify the spider_categories.json file as needed based on network request URLs obtained from the Shopee site.
+Step B: Directory Structure
+The directory structure for the tool is as follows:
+E:.
+├─catagories
+│ ├─category_info
+│ ├─check_point
+│ ├─data
+│ │ ├─products
+│ │ │ ├─polymerization_products
+│ ├─external_api
+│ ├─tools
+│ ├main_get_products_by_cat.py
+│ ├1.get_third(facet)_category.py
+│ ├2.create_tree_last.py
+│ ├3.ac_cert_d.txt
+│ ├change_ip_windows_timely.py
+│ ├get_backups.py
+│ ├selenium_capture
+│ ├ ..
+│ ├ ...
+│ └ ....
+└─venv
+├─Lib
+│ └─site-packages
+
+Version 1.0.0 updates:
+
+Achieved successful scraping for all platforms.
+Known issue: requires captcha processing, which can be ignored for small scraping jobs. IP proxy for Taiwan site is complex.
